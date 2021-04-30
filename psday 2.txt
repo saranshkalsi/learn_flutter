@@ -1,0 +1,85 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+
+        //debugShowCheckedModeBanner:false,
+        home: Scaffold(
+            appBar: AppBar(
+              title: Text("App Bar Title"),
+              backgroundColor: Colors.black,
+            ),
+            body: Column(
+              children: <Widget>[
+                AppBody(
+                    title: burgerTitle,
+                    description: burgerDescription,
+                    url: burgerUrl),
+                AppBody(
+                    title: burgerTitle,
+                    description: burgerDescription,
+                    url: burgerUrl),
+                AppBody(
+                    title: burgerTitle,
+                    description: burgerDescription,
+                    url: burgerUrl)
+              ],
+            )));
+  }
+}
+
+String burgerTitle = "McSalman Khan";
+String burgerDescription = "Crispy Aloo tikki with gadi tera bhai chalayega";
+final String burgerUrl =
+    "https://media1.s-nbcnews.com/i/newscms/2019_21/2870431/190524-classic-american-cheeseburger-ew-207p_d9270c5c545b30ea094084c7f2342eb4.jpg";
+
+class AppBody extends StatelessWidget {
+  final String title;
+  final String url;
+  final String description;
+  @override
+  const AppBody({
+    this.title = "",
+    this.description = "",
+    this.url = "",
+  });
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: Column(children: <Widget>[
+        Row(
+          children: <Widget>[
+            Container(
+              width: 60,
+              height: 60,
+              margin: EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: NetworkImage(this.url),
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(this.title),
+                  Text(this.description),
+                ],
+              ),
+            ),
+          ],
+        ),
+        Divider(color: Colors.red),
+      ]),
+    );
+  }
+}
